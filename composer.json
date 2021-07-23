@@ -1,0 +1,10 @@
+{
+    "autoload": {
+      "classmap": [
+        "./"
+      ],
+      "files": [
+          "app/Helpers/common.php"
+      ]
+    }
+  }
