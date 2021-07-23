@@ -28,6 +28,8 @@ php -S localhost:{port}
 - Access browser with domain: `http://localhost:{port}`
 
 ### Test
+*Please create another database to test*
+
 Use ngrok to test (`cd others/ngrok`)
 ```
 ./ngrok http {port}
