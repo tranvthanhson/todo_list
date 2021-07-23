@@ -4,7 +4,7 @@
 - Server Apache2 or Nginx
 - PHP >= 7.3
 - Composer >= 2.0.13
-- Mysql >= 14
+- Mysql >= 8.0.23
     
 ### Install
 Clone project:
