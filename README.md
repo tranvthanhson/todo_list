@@ -18,3 +18,11 @@
     Run command: `composer install`
     Run command: `php -S localhost:{port}`
     Access browser with domain: `http://localhost:{port}`
+
+### Test
+    Use ngrok to test (`cd others/ngrok`)
+    ```
+    ./ngrok http {port}
+    ```
+    Change `base_uri` in Test class
+    Run command: `./vendor/bin/phpunit --filter TaskTest`

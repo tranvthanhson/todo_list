@@ -63,4 +63,11 @@ class BaseModel
             $id
         );
     }
+
+    public static function deleteAll()
+    {
+        new static();
+
+        return static::$driver->deleteAll(static::$table);
+    }
 }

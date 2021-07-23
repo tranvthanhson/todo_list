@@ -92,4 +92,17 @@ class QueryBuilder
             die($e->getMessage());
         }
     }
+
+    public function deleteAll(string $tableName)
+    {
+        try {
+            $statement = $this->pdo->prepare("delete from {$tableName}");
+
+            $statement->execute();
+
+            return $statement->fetchAll(PDO::FETCH_CLASS);
+        } catch (Exception $e) {
+            var_dump($e->getMessage());
+        }
+    }
 }
