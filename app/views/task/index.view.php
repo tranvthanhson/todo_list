@@ -4,15 +4,15 @@
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <h3 v-show="isStore">Create task</h3>
-            <h3 v-show="!isStore">Update task</h3>
+            <h3 v-show="isStore">Create work</h3>
+            <h3 v-show="!isStore">Update work</h3>
         </div>
         <div class="col-md-12">
             <form v-on:submit.prevent>
                 <div class="form-row">
                     <div class="form-group col-6">
-                        <label>Tasks</label>
-                        <input type="text" class="form-control" placeholder="Enter task" v-model="task.name">
+                        <label>Work</label>
+                        <input type="text" class="form-control" placeholder="Enter work" v-model="task.name">
                     </div>
                     <div class="form-group col-6">
                         <label>Status</label>
@@ -49,38 +49,40 @@
         <span class="badge badge-warning">{{ doing }} Doing</span>
         <span class="badge badge-success">{{ done }} Done</span>
     </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Start date</th>
-                <th scope="col">End date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-if="tasks.length == 0">
-                <td colspan="6" class="text-center">Empty work</td>
-            </tr>
-            <tr v-for="(task, index) in tasks" :key="task" v-else>
-                <td>{{ index + 1 }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.start_date }}</td>
-                <td>{{ task.end_date }}</td>
-                <td>
-                    <label class="badge badge-danger" v-if="task.status == 0">To do</label>
-                    <label class="badge badge-warning" v-if="task.status == 1">Doing</label>
-                    <label class="badge badge-success" v-if="task.status == 2">Done</label>
-                </td>
-                <td>
-                    <button class="btn btn-info btn-sm" @click="editTask(task)">Edit</button>
-                    <button class="btn btn-danger btn-sm" @click="destroyTask(task.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-if="tasks.length == 0">
+                    <td colspan="6" class="text-center">Empty work</td>
+                </tr>
+                <tr v-for="(task, index) in tasks" :key="task" v-else>
+                    <td class="text-nowrap">{{ index + 1 }}</td>
+                    <td class="text-nowrap">{{ task.name }}</td>
+                    <td class="text-nowrap">{{ task.start_date }}</td>
+                    <td class="text-nowrap">{{ task.end_date }}</td>
+                    <td class="text-nowrap">
+                        <label class="badge badge-danger" v-if="task.status == 0">To do</label>
+                        <label class="badge badge-warning" v-if="task.status == 1">Doing</label>
+                        <label class="badge badge-success" v-if="task.status == 2">Done</label>
+                    </td>
+                    <td class="text-nowrap">
+                        <button class="btn btn-info btn-sm" @click="editTask(task)">Edit</button>
+                        <button class="btn btn-danger btn-sm" @click="destroyTask(task.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <script>
     var app = new Vue({
