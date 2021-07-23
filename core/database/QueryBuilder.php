@@ -1,18 +1,37 @@
 <?php
 
+namespace Core\Database;
+
+use PDO;
+use Exception;
+
 class QueryBuilder
 {
     protected $pdo;
 
+    /**
+     * Construct
+     *
+     * @param PDO $pdo pdo
+     *
+     * @return void
+     */
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
     }
 
-    public function all(string $tableName)
+    /**
+     * All
+     *
+     * @param string $table table
+     *
+     * @return void
+     */
+    public function all(string $table)
     {
         try {
-            $statement = $this->pdo->prepare("select * from {$tableName}");
+            $statement = $this->pdo->prepare("select * from {$table}");
 
             $statement->execute();
 
@@ -22,7 +41,15 @@ class QueryBuilder
         }
     }
 
-    public function getById($table, $id)
+    /**
+     * Get by id
+     *
+     * @param string $table table
+     * @param int    $id    id
+     *
+     * @return void
+     */
+    public function getById(string $table, int $id)
     {
         try {
             $statement = $this->pdo->prepare("select * from {$table} where id = {$id}");
@@ -35,6 +62,14 @@ class QueryBuilder
         }
     }
 
+    /**
+     * Insert
+     *
+     * @param string $table      table
+     * @param array  $parameters parameters
+     *
+     * @return void
+     */
     public function insert($table, $parameters)
     {
         try {
@@ -51,6 +86,14 @@ class QueryBuilder
         }
     }
 
+    /**
+     * Delete
+     *
+     * @param string $table table
+     * @param int    $id    id
+     *
+     * @return void
+     */
     public function delete($table, $id)
     {
         try {
@@ -66,6 +109,15 @@ class QueryBuilder
         }
     }
 
+    /**
+     * Update
+     *
+     * @param string $table      table
+     * @param array  $parameters parameters
+     * @param array  $condition  condition
+     *
+     * @return void
+     */
     public function update($table, $parameters, $condition)
     {
         try {
@@ -73,17 +125,17 @@ class QueryBuilder
             $keys = array_keys($parameters);
             $values = array_values($parameters);
             for ($i = 0; $i < count($parameters); $i++) {
-                if (gettype($values[$i]) === "string")
+                if (gettype($values[$i]) === "string") {
                     $temp = $keys[$i] . "='" . $values[$i] . "'";
-                else
+                } else {
                     $temp = $keys[$i] . "=" . $values[$i];
+                }
                 array_push($result, $temp);
             }
             $sql = sprintf(
                 'update %s set %s where id=%s',
                 $table,
                 implode(',', $result),
-    
                 $condition
             );
             $stm = $this->pdo->prepare($sql);
@@ -93,10 +145,17 @@ class QueryBuilder
         }
     }
 
-    public function deleteAll(string $tableName)
+    /**
+     * Delete all
+     *
+     * @param string $table table
+     *
+     * @return void
+     */
+    public function deleteAll(string $table)
     {
         try {
-            $statement = $this->pdo->prepare("delete from {$tableName}");
+            $statement = $this->pdo->prepare("delete from {$table}");
 
             $statement->execute();
 

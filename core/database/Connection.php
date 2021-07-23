@@ -1,8 +1,19 @@
 <?php
 
+namespace Core\Database;
+
+use PDO;
+
 class Connection
 {
-    public static function make($config)
+    /**
+     * Make
+     *
+     * @param array $config config
+     *
+     * @return PDO
+     */
+    public static function make(array $config)
     {
         try {
             return new PDO(

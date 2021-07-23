@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Standard">
+    <!-- Default directory to check if there are no directories argurment  -->
+    <file>app</file>
+    <file>resources</file>
+
+    <!-- Add PSR1 standard -->
+    <rule ref="PSR1"></rule>
+
+    <!-- Add PSR2 standard -->
+    <rule ref="PSR2"></rule>
+
+    <rule ref="PEAR.Commenting.FunctionComment"></rule>
+    <rule ref="Generic.Commenting.DocComment">
+        <exclude name="Generic.Commenting.DocComment.TagsNotGrouped"/>
+    </rule>
+    <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+    <rule ref="Generic.PHP.LowerCaseConstant"/>
+    <rule ref="Generic.PHP.LowerCaseKeyword"/>
+    <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+    <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
+    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+    <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
+    <rule ref="Generic.WhiteSpace.ScopeIndent"/>
+    <rule ref="Generic.Files.LineLength">
+       <exclude name="Generic.Files.LineLength"/>
+    </rule>
+
+    <exclude-pattern>assets/</exclude-pattern>
+    <exclude-pattern>vendor/</exclude-pattern>
+</ruleset>

@@ -44,6 +44,11 @@
     </div>
     <hr>
     <h3>Works</h3>
+    <p>
+        <span class="badge badge-danger">{{ todo }} Todo</span>
+        <span class="badge badge-warning">{{ doing }} Doing</span>
+        <span class="badge badge-success">{{ done }} Done</span>
+    </p>
     <table class="table">
         <thead>
             <tr>
@@ -88,6 +93,9 @@
                 end_date: '',
                 status: 0,
             },
+            todo: 0,
+            doing: 0,
+            done: 0,
             isStore: true
         },
         created() {
@@ -114,6 +122,12 @@
 
                     success: (result) => {
                         this.tasks = JSON.parse(result).data
+                        if (this.tasks.length == 0) {
+                            return;
+                        }
+                        this.todo = this.tasks.filter(item => item.status == 0).length
+                        this.doing = this.tasks.filter(item => item.status == 1).length
+                        this.done = this.tasks.filter(item => item.status == 2).length
                     }
                 })
             },

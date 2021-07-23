@@ -6,11 +6,21 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
+    /**
+     * Index
+     *
+     * @return view
+     */
     public function index()
     {
         return view('task/index');
     }
 
+    /**
+     * Table
+     *
+     * @return response
+     */
     public function table()
     {
         $tasks = Task::all();
@@ -18,6 +28,11 @@ class TaskController extends Controller
         echo $this->response('', '', $tasks);
     }
 
+    /**
+     * Store
+     *
+     * @return response
+     */
     public function store()
     {
         $data = [
@@ -28,21 +43,26 @@ class TaskController extends Controller
         ];
         if ($data['name'] == '') {
             echo $this->response('', 'Name is not correct');
-            return ;
+            return;
         }
         if ($data['start_date'] == '') {
             echo $this->response('', 'Start date is not correct');
-            return ;
+            return;
         }
         if ($data['end_date'] == '') {
             echo $this->response('', 'End date is not correct');
-            return ;
+            return;
         }
 
         Task::insert($data);
         echo $this->response('Create successfully');
     }
 
+    /**
+     * Destroy
+     *
+     * @return response
+     */
     public function destroy()
     {
         Task::delete($_POST['id']);
@@ -50,6 +70,11 @@ class TaskController extends Controller
         echo $this->response('Delete successfully');
     }
 
+    /**
+     * Update
+     *
+     * @return response
+     */
     public function update()
     {
         $data = [
@@ -60,15 +85,15 @@ class TaskController extends Controller
         ];
         if ($data['name'] == '') {
             echo $this->response('', 'Name is not correct');
-            return ;
+            return;
         }
         if ($data['start_date'] == '') {
             echo $this->response('', 'Start date is not correct');
-            return ;
+            return;
         }
         if ($data['end_date'] == '') {
             echo $this->response('', 'End date is not correct');
-            return ;
+            return;
         }
         Task::updateById($data, $_POST['id']);
 
